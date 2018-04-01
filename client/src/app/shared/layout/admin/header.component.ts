@@ -6,7 +6,8 @@ import { UserService } from '../../services';
 
 @Component({
   selector: 'admin-header',
-  templateUrl: './header.component.html'
+  templateUrl: './header.component.html',
+  styleUrls: ['header.component.scss']
 })
 export class HeaderComponent implements OnInit {
   constructor(

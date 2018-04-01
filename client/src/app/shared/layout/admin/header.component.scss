@@ -1,0 +1,17 @@
+.header {background-color:#fff; box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);left: 0;position: fixed;right: 0;top: 0;z-index: 999;}
+.header .header-left{float:left;text-align:center;height:60px;position:relative;width:200px;z-index:1;}
+.header .header-left .logo {display: inline-block;line-height: 60px;}
+.logo > img {display: inline-block;width:auto;height:42px;}
+.page-title-box {border-radius: 0;height: 60px;margin-bottom: 0;padding: 17px 30px;}
+.page-title-box h3 {color: #333;font-size: 24px;font-weight: 700;margin: 0; text-transform:uppercase;}
+.user-menu {margin: 0;}
+.user-menu.nav > li > a {color: #333;font-size: 18px;line-height: 60px;padding: 0 15px;}
+.user-menu.nav > li > a:hover, .user-menu.nav > li > a:focus {background-color:rgba(0, 0, 0, 0.2);}
+.menu-title {background-color: #3086c7;color: #fff;font-size: 16px;line-height: 40px;min-height: 40px;padding: 0 20px;}
+
+@media only screen and (max-width:767px){
+	.header .header-left{ width:57px;}
+	.user-menu{ float:right;}
+	.user-menu.nav li a{ font-size:0;}
+	.user-menu.nav li a i{ font-size:18px; vertical-align:middle;}
+}

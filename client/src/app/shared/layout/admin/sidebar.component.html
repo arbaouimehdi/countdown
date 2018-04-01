@@ -1,1 +1,16 @@
-<h1>Sidebar</h1>
+<div class="sidebar">
+  <div class="sidebar-inner slimscroll">
+    <div class="sidebar-menu">
+      <ul>
+        <li>
+          <a class="nav-link" routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <i class="fa fa-th-large" aria-hidden="true"></i> Dashboard</a>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="/admin/subscribers" routerLinkActive="active">
+            <i class="fa fa-users" aria-hidden="true"></i> Subscribers List</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

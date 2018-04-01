@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { AdminSubscribersComponent } from './admin-subscribers.component';
 import { AdminAuthResolver } from './admin-auth-resolver.service';
-import { SharedModule, FooterComponent, HeaderComponent } from '../shared';
+import { SharedModule, FooterComponent, HeaderComponent, SidebarComponent } from '../shared';
 
 const adminRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -36,6 +36,7 @@ const adminRouting: ModuleWithProviders = RouterModule.forChild([
     AdminSubscribersComponent,
     FooterComponent,
     HeaderComponent,
+    SidebarComponent,
   ],
   providers: [
     AdminAuthResolver

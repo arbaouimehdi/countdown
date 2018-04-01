@@ -5,7 +5,7 @@ import { User } from '../../models';
 import { UserService } from '../../services';
 
 @Component({
-  selector: 'app-layout-admin-header',
+  selector: 'admin-header',
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {

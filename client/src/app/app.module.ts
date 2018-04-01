@@ -5,6 +5,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
+
 import { CountdownModule } from './countdown/countdown.module';
 import { AdminModule } from './admin/admin.module';
 
@@ -12,20 +13,18 @@ import {
   ApiService,
   AuthGuard,
   FooterComponent,
-  HeaderComponent,
   JwtService,
   SharedModule,
   UserService,
   HttpTokenInterceptor
 } from './shared';
+import { AdminSubscribersComponent } from './admin/admin-subscribers.component';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([])
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FooterComponent,
-    HeaderComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,

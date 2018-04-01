@@ -2,8 +2,9 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AdminComponent } from './admin.component';
+import { AdminSubscribersComponent } from './admin-subscribers.component';
 import { AdminAuthResolver } from './admin-auth-resolver.service';
-import { SharedModule } from '../shared';
+import { SharedModule, FooterComponent, HeaderComponent } from '../shared';
 
 const adminRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -11,8 +12,18 @@ const adminRouting: ModuleWithProviders = RouterModule.forChild([
     component: AdminComponent,
     resolve: {
       isAuthenticated: AdminAuthResolver
-    }
+    },
+    children: [
+      {
+        path: 'subscribers',
+        component: AdminSubscribersComponent,
+        resolve: {
+          isAuthenticated: AdminAuthResolver
+        }
+      }
+    ]
   }
+
 ]);
 
 @NgModule({
@@ -21,7 +32,10 @@ const adminRouting: ModuleWithProviders = RouterModule.forChild([
     SharedModule
   ],
   declarations: [
-    AdminComponent
+    AdminComponent,
+    AdminSubscribersComponent,
+    FooterComponent,
+    HeaderComponent,
   ],
   providers: [
     AdminAuthResolver

@@ -32,10 +32,13 @@ export class AdminComponent implements OnInit {
   }
 
   setListTo(type: string = '', filters: Object = {}) {
-    console.log(type);
     // If admin is requested but user is not authenticated, redirect to login
     if (type === 'admin' && !this.isAuthenticated) {
       this.router.navigateByUrl('/login');
+      return;
+    }
+    if (type === 'admin/dashboard' && this.isAuthenticated) {
+      this.router.navigateByUrl('/admin/dashboard');
       return;
     }
 

@@ -6,7 +6,7 @@ import { UserService } from '../shared';
 @Component({
   selector: 'app-admin-page',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
   constructor(

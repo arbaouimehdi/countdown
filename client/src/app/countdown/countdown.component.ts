@@ -6,7 +6,7 @@ import { UserService } from '../shared';
 @Component({
   selector: 'app-countdown-page',
   templateUrl: './countdown.component.html',
-  styleUrls: ['./countdown.component.css']
+  styleUrls: ['./countdown.component.scss']
 })
 export class CountdownComponent implements OnInit {
   constructor(

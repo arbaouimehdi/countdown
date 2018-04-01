@@ -6,7 +6,7 @@ import { UserService } from '../shared';
 import { take } from 'rxjs/operators';
 
 @Injectable()
-export class HomeAuthResolver implements Resolve<boolean> {
+export class AdminAuthResolver implements Resolve<boolean> {
   constructor(
     private router: Router,
     private userService: UserService

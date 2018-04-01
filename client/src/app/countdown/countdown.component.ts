@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { UserService } from '../shared';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-countdown-page',
+  templateUrl: './countdown.component.html',
+  styleUrls: ['./countdown.component.css']
 })
-export class HomeComponent implements OnInit {
+export class CountdownComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService

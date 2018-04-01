@@ -5,7 +5,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
-import { HomeModule } from './home/home.module';
+import { CountdownModule } from './countdown/countdown.module';
+import { AdminModule } from './admin/admin.module';
 
 import {
   ApiService,
@@ -24,12 +25,13 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([])
   declarations: [
     AppComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     AuthModule,
-    HomeModule,
+    CountdownModule,
+    AdminModule,
     rootRouting,
     SharedModule
   ],

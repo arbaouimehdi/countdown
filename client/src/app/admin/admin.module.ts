@@ -2,10 +2,11 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AdminComponent } from './admin.component';
-import { AdminSubscribersComponent } from './admin-subscribers.component';
-import { AdminDashboardComponent } from './admin-dashboard.component';
+import { AdminSubscribersComponent } from './subscribers/subscribers.component';
+import { AdminDashboardComponent } from './dashboard/dashboard.component';
 import { AdminAuthResolver } from './admin-auth-resolver.service';
 import { SharedModule, FooterComponent, HeaderComponent, SidebarComponent } from '../shared';
+import { CountdownComponent } from './countdown/countdown.component';
 
 const adminRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -40,6 +41,7 @@ const adminRouting: ModuleWithProviders = RouterModule.forChild([
     FooterComponent,
     HeaderComponent,
     SidebarComponent,
+    CountdownComponent,
   ],
   providers: [
     AdminAuthResolver

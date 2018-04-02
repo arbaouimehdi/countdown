@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UserService } from '../shared';
+import { UserService } from '../../shared';
 
 @Component({
-  selector: 'app-admin-subscribers',
-  templateUrl: './admin-subscribers.component.html',
-  styleUrls: ['./admin-subscribers.component.scss']
+  selector: 'admin-subscribers',
+  templateUrl: './subscribers.component.html',
+  styleUrls: ['./subscribers.component.scss']
 })
 export class AdminSubscribersComponent implements OnInit {
 

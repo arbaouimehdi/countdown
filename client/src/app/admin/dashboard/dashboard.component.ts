@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UserService } from '../shared';
+import { UserService } from '../../shared';
 
 @Component({
   selector: 'admin-dashboard',
-  templateUrl: './admin-dashboard.component.html'
+  templateUrl: './dashboard.component.html'
 })
 export class AdminDashboardComponent implements OnInit {
 

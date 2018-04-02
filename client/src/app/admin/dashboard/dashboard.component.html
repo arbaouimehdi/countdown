@@ -1,0 +1,65 @@
+<!-- Set The Launch Time -->
+<div class="row">
+  <div class="col-md-6">
+    <div class="card-box">
+      <div class="card-title">Set the launch time</div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label class="control-label">Choose the date &amp; time</label>
+            <div class="input-group date">
+              <input type="text" name="datetime" value="08/06/2018 05:42 PM" class="form-control" id="datetimepicker1">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+
+            </div>
+            <small class="text-danger datetime_error" style="display: none;">Please select date and time</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Customize The Application -->
+<div class="row">
+    <div class="col-lg-12">
+      <div class="card-box">
+        <div class="card-title">Customize the application</div>
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <div class="form-group">
+              <label class="control-label">Logo</label>
+              <input type="file" id="imgInp" onchange="validate(this.value)" accept="image/*" name="logo" class="form-control" onsubmit="checkDash()">												<span class="help-block" id="recomendsize">Recommended image size is 100px X 100px</span>
+              <small class="text-danger imgreq_error" style="display: none;">Please choose the image</small>
+              <small class="text-danger imgext_error" style="display: none;">Please upload jpg|jpeg|png|gif images only</small>
+              <small class="text-danger imgsize_error" style="display: none;">Please upload 100px X 100px size images</small>
+                                      <img id="logo_img" src="https://dreamguys.co.in/demo/ontime/assets/logo/igor_100180310114811.png " class=" image_hide img-responsive" width="auto" height="42" alt="logo">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <div class="form-group">
+              <label class="control-label">Title 1 </label>
+              <input class="form-control" id="title1" name="title1" value="Be You" type="text">
+              <small class="text-danger title1req_error" style="display: none;">Please Enter Title1</small>
+              <small class="text-danger title1_error" style="display: none;">Please Enter Max. 55 Characters</small>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <div class="form-group">
+              <label class="control-label">Title 2</label>
+              <input class="form-control" type="text" id="title2" name="title2" value="Hello World">
+              <small class="text-danger title2req_error" style="display: none;">Please Enter Title2</small>
+              <small class="text-danger title2_error" style="display: none;">Please Enter Max. 55 Characters</small>
+            </div>
+          </div>
+        </div>
+        <div class="text-right">
+          <button type="submit" class="btn btn-primary account-btn">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>

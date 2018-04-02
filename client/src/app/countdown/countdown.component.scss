@@ -1,0 +1,91 @@
+.countdown {
+  background: linear-gradient(to bottom, #ff9479 1%,#ff6f76 100%);
+  color: #fff;
+  height: 100vh;
+  text-align: center;
+
+  a {
+    color: #fff;
+  }
+
+  ul {
+    li {
+      list-style: none;
+      float: left;
+    }
+  }
+
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    align-items: center;
+    margin-bottom: 75px;
+
+    .logo {
+      flex: 50%;
+      text-align: left;
+    }
+
+    .social-medias {
+      flex: 50%;
+      text-align: right;
+
+      a {
+        display: inline-block;
+        font-size: 18px;
+        position: relative;
+        background: #feb09e99;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        border-radius: 100%;
+        margin-left: 8px;
+
+        &:hover {
+          background: #fff;
+          color: #ff7f76;
+        }
+
+        i {
+          position: relative;
+          top: 9px;
+        }
+      }
+    }
+  }
+
+  .description {
+
+    h1 {
+      font-size: 40px;
+    }
+
+    p {
+      font-size: 17px;
+      margin-top: 20px;
+      line-height: 1.8em;
+    }
+  }
+
+  .email-notification {
+    .btn {
+      background: #333;
+      border-color: #000;
+    }
+  }
+
+  .notify-me {
+    margin-top: 40px;
+    a {
+      background: #fff;
+      color: #da6666;
+      display: inline;
+      border-radius: 41px;
+      padding: 15px 53px;
+      font-size: 17px;
+      font-weight: bold;
+      box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.17);
+    }
+  }
+}

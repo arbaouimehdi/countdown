@@ -17,6 +17,9 @@ export class CountdownComponent implements OnInit {
   isAuthenticated: boolean;
 
   ngOnInit() {
+
+    this.setCountDown();
+
     this.userService.isAuthenticated.subscribe(
       (authenticated) => {
         this.isAuthenticated = authenticated;
@@ -39,4 +42,9 @@ export class CountdownComponent implements OnInit {
     }
 
   }
+
+  setCountDown() {
+    $('#countdown-timer').countDown();
+  }
+
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './shared';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-root',

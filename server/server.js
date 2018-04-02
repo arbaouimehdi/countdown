@@ -41,7 +41,7 @@ if(isProduction){
 
 require('./models/User');
 require('./models/Subscriber');
-require('./models/User');
+require('./models/Countdown');
 require('./config/passport');
 
 app.use(require('./routes'));

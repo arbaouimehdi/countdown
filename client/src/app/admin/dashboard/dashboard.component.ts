@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { UserService } from '../../shared';
+import { UserService } from '../../shared/services/user.service';
+import { CountdownsService } from '../../shared/services/countdowns.service';
 import { Countdown } from '../../shared/models/countdown.model';
 
 @Component({
   selector: 'admin-dashboard',
-  templateUrl: './dashboard.component.html'
+  templateUrl: './dashboard.component.html',
+  providers: [CountdownsService]
 })
 export class AdminDashboardComponent implements OnInit {
 
@@ -15,13 +18,20 @@ export class AdminDashboardComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
+    private countdownsService: CountdownsService,
     private userService: UserService
   ) {}
 
   isAuthenticated: boolean;
 
   ngOnInit() {
-    console.log('Admin Dshboard');
+    // Retreive the prefetched article
+    this.route.data.subscribe(
+      (data: { article: Countdown }) => {
+        console.log(data);
+      }
+    );
   }
 
 }

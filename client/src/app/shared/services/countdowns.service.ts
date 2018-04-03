@@ -15,12 +15,12 @@ export class CountdownsService {
   get(slug): Observable<Countdown> {
     return this.apiService.get('/countdown')
   }
+
   save(countdown): Observable<Countdown> {
     // If we're updating an existing article
     let id = countdown.countdowns[0]._id;
-    console.log(countdown);
+
     if (countdown) {
-      // console.log(countdown.countdowns[0]);
       return this.apiService.put(`/${id}`, countdown);
     }
   }

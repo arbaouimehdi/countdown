@@ -60,11 +60,20 @@ router.put('/:countdown', function(req, res, next) {
       req_countdown.behance_url = req.body.behance_url;
     }
 
-    req_countdown.save().then(function(countdown){
-      return res.json({
-        countdown: req_countdown
-      });
+    req_countdown.save(function(err, countdown) {
+      if (err) {
+        return res.status(404).json(err); 
+      }else {
+        return res.json({
+          countdown: req_countdown
+        });
+      }
     })
+    // req_countdown.save().then(function(countdown){
+    //   return res.json({
+    //     countdown: req_countdown
+    //   });
+    // })
 
   });
 })

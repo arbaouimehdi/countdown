@@ -34,7 +34,10 @@ export class AdminDashboardComponent implements OnInit {
   ngOnInit() {
     // Retreive the prefetched article
     this.route.data.subscribe(
-      (data: { countdown: Countdown }) => {
+      (data: {
+        countdown: Countdown,
+      }) => {
+        console.log(data.countdown);
         if (data.countdown) {
 
           this.countdownForm = this.fb.group({
@@ -55,6 +58,7 @@ export class AdminDashboardComponent implements OnInit {
 
   submitForm() {
     this.isSubmitting = true;
+    this.errors = {errors: {}};
 
     if ($('#datetimepicker1').val()){
       this.countdownForm.value.launch_time = $('#datetimepicker1').val();
@@ -67,7 +71,7 @@ export class AdminDashboardComponent implements OnInit {
     this.countdownsService
     .save(this.countdown)
     .subscribe(
-      countdown => this.router.navigateByUrl('/admin/dashboard'),
+      countdown => this.router.navigateByUrl('admin/dashboard'),
       err => {
         this.errors = err;
         this.isSubmitting = false;

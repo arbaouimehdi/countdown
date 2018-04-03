@@ -2,9 +2,9 @@ let mongoose = require('mongoose');
 let uniqueValidator = require('mongoose-unique-validator');
 
 let CountdownSchema = new mongoose.Schema({
-  launch_time: { type: String },
-  title: { type: String },
-  description: { type: String },
+  launch_time: { type: String, required: true },
+  title: { type: String, required: [true, "can't be blank"], maxlength: 25 },
+  description: { type: String, required: [true, "can't be blank"] },
   logo: { type: String },
   facebook_url: { type: String },
   twitter_url: { type: String },

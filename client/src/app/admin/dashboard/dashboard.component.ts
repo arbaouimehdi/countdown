@@ -27,12 +27,7 @@ export class AdminDashboardComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder
-  ) {
-    this.countdownForm = this.fb.group({
-      title: '',
-      description: ''
-    });
-  }
+  ) {}
 
   isAuthenticated: boolean;
 
@@ -41,11 +36,48 @@ export class AdminDashboardComponent implements OnInit {
     this.route.data.subscribe(
       (data: { countdown: Countdown }) => {
         if (data.countdown) {
+
+          this.countdownForm = this.fb.group({
+            launch_time: data.countdown.countdowns[0].launch_time,
+            title: data.countdown.countdowns[0].title,
+            description: data.countdown.countdowns[0].description
+          });
+
           this.countdown = data.countdown;
           this.countdownForm.patchValue(data.countdown);
         }
       }
     );
+
+    // Time Picker
+    $('#datetimepicker1').datetimepicker();
+  }
+
+  submitForm() {
+    this.isSubmitting = true;
+
+    if ($('#datetimepicker1').val()){
+      this.countdownForm.value.launch_time = $('#datetimepicker1').val();
+    }
+
+    // Update the model
+    this.updateCountdown(this.countdownForm.value);
+
+    // post the changes
+    this.countdownsService
+    .save(this.countdown)
+    .subscribe(
+      countdown => this.router.navigateByUrl('/admin/dashboard'),
+      err => {
+        this.errors = err;
+        this.isSubmitting = false;
+      }
+    );
+
+  }
+
+  updateCountdown(values: Object) {
+    Object.assign(this.countdown, values);
   }
 
 }

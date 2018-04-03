@@ -34,11 +34,9 @@ export class AdminDashboardComponent implements OnInit {
   ngOnInit() {
     // Retreive the prefetched article
     this.route.data.subscribe(
-      (data: {
-        countdown: Countdown,
-      }) => {
-        console.log(data.countdown);
-        if (data.countdown) {
+      (data) => {
+
+        if (data) {
 
           this.countdownForm = this.fb.group({
             launch_time: data.countdown.countdowns[0].launch_time,
@@ -48,6 +46,7 @@ export class AdminDashboardComponent implements OnInit {
 
           this.countdown = data.countdown;
           this.countdownForm.patchValue(data.countdown);
+
         }
       }
     );

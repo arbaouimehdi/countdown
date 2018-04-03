@@ -38,7 +38,7 @@ export class CountdownComponent implements OnInit {
 
     // Retreive the prefetched article
     this.route.data.subscribe(
-      (data: { countdown: Countdown }) => {
+      (data) => {
         if (data.countdown) {
           let launch_time = data.countdown.countdowns[0].launch_time;
           this.countdown = data.countdown;

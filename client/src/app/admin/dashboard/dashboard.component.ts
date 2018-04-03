@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { AdminDashboardResolver } from '../dashboard/admin-dashboard-resolver.service'
 import { UserService } from '../../shared/services/user.service';
 import { CountdownsService } from '../../shared/services/countdowns.service';
@@ -16,23 +17,33 @@ import { Countdown } from '../../shared/models/countdown.model';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  countdown: Countdown;
+  countdown: Countdown = {} as Countdown;
+  countdownForm: FormGroup;
+  errors: Object = {};
   isSubmitting = false;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
     private countdownsService: CountdownsService,
-    private userService: UserService
-  ) {}
+    private route: ActivatedRoute,
+    private router: Router,
+    private fb: FormBuilder
+  ) {
+    this.countdownForm = this.fb.group({
+      title: '',
+      description: ''
+    });
+  }
 
   isAuthenticated: boolean;
 
   ngOnInit() {
     // Retreive the prefetched article
     this.route.data.subscribe(
-      (data: { article: Countdown }) => {
-        console.log(data);
+      (data: { countdown: Countdown }) => {
+        if (data.countdown) {
+          this.countdown = data.countdown;
+          this.countdownForm.patchValue(data.countdown);
+        }
       }
     );
   }

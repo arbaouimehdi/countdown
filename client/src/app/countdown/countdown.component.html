@@ -11,13 +11,13 @@
 
       <!-- Social Media Links -->
       <div class="social-medias">
-        <a href="#">
+        <a href="{{ countdown.countdowns[0].facebook_url }}">
           <i class="fa fa-twitter"></i>
         </a>
-        <a href="#">
+        <a href="{{ countdown.countdowns[0].twitter_url }}">
           <i class="fa fa-facebook"></i>
         </a>
-        <a href="#">
+        <a href="{{ countdown.countdowns[0].behance_url }}">
           <i class="fa fa-behance"></i>
         </a>
       </div>
@@ -25,14 +25,12 @@
 
     <!-- Description -->
     <div class="description">
-      <h1>The Best Coffee On Your Phone</h1>
-      <p>
-        Everything That you love about coffee now you can<br/> Find on you smartphone
-      </p>
+      <h1>{{ countdown.countdowns[0].title }}</h1>
+      <p>{{ countdown.countdowns[0].description }}</p>
     </div>
 
     <!-- Countdown Timer -->
-    <div id="countdown-timer">2018-04-12T17:43:00</div>
+    <div id="countdown-timer"></div>
 
     <!-- Email Notification -->
     <div class="email-notification">

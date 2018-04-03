@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { UserService } from '../shared';
+import { Countdown } from '../shared/models/countdown.model';
 
 @Component({
   selector: 'app-countdown-page',
@@ -9,16 +10,18 @@ import { UserService } from '../shared';
   styleUrls: ['./countdown.component.scss']
 })
 export class CountdownComponent implements OnInit {
+
+  countdown: Countdown = {} as Countdown;
+
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private userService: UserService
   ) {}
 
   isAuthenticated: boolean;
 
   ngOnInit() {
-
-    this.setCountDown();
 
     this.userService.isAuthenticated.subscribe(
       (authenticated) => {
@@ -29,6 +32,18 @@ export class CountdownComponent implements OnInit {
           this.setListTo('feed');
         } else {
           this.setListTo('all');
+        }
+      }
+    );
+
+    // Retreive the prefetched article
+    this.route.data.subscribe(
+      (data: { countdown: Countdown }) => {
+        if (data.countdown) {
+          let launch_time = data.countdown.countdowns[0].launch_time;
+          this.countdown = data.countdown;
+          this.setCountDown(launch_time);
+
         }
       }
     );
@@ -43,8 +58,8 @@ export class CountdownComponent implements OnInit {
 
   }
 
-  setCountDown() {
-    $('#countdown-timer').countDown();
+  setCountDown(date) {
+    $('#countdown-timer').text(date).countDown();
   }
 
 }

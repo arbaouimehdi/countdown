@@ -5,6 +5,7 @@ import { AdminComponent } from './admin.component';
 import { AdminSubscribersComponent } from './subscribers/subscribers.component';
 import { AdminDashboardComponent } from './dashboard/dashboard.component';
 import { AdminAuthResolver } from './admin-auth-resolver.service';
+import { AdminDashboardResolver } from './dashboard/admin-dashboard-resolver.service'
 import { SharedModule, FooterComponent, HeaderComponent, SidebarComponent } from '../shared';
 import { CountdownComponent } from './countdown/countdown.component';
 
@@ -22,7 +23,10 @@ const adminRouting: ModuleWithProviders = RouterModule.forChild([
       },
       {
         path: 'dashboard',
-        component: AdminDashboardComponent
+        component: AdminDashboardComponent,
+        resolve: {
+          countdown: AdminDashboardResolver
+        }
       }
     ]
   }
@@ -44,7 +48,8 @@ const adminRouting: ModuleWithProviders = RouterModule.forChild([
     CountdownComponent,
   ],
   providers: [
-    AdminAuthResolver
+    AdminAuthResolver,
+    AdminDashboardResolver
   ]
 })
 export class AdminModule {}

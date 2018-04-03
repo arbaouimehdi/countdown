@@ -13,7 +13,7 @@ export class CountdownsService {
   ) {}
 
   get(slug): Observable<Countdown> {
-    return
+    return this.apiService.get('/countdown')
   }
 
   save(article): Observable<Countdown> {

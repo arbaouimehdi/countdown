@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { AdminDashboardResolver } from '../dashboard/admin-dashboard-resolver.service'
 import { UserService } from '../../shared/services/user.service';
 import { CountdownsService } from '../../shared/services/countdowns.service';
 import { Countdown } from '../../shared/models/countdown.model';
@@ -9,7 +9,10 @@ import { Countdown } from '../../shared/models/countdown.model';
 @Component({
   selector: 'admin-dashboard',
   templateUrl: './dashboard.component.html',
-  providers: [CountdownsService]
+  providers: [
+    CountdownsService,
+    AdminDashboardResolver
+  ]
 })
 export class AdminDashboardComponent implements OnInit {
 

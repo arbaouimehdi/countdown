@@ -4,9 +4,10 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { AuthModule } from './auth/auth.module';
 
+import { AuthModule } from './auth/auth.module';
 import { CountdownModule } from './countdown/countdown.module';
+import { DashboardModule } from './admin/dashboard/dashboard.module'
 import { AdminModule } from './admin/admin.module';
 
 import {
@@ -30,6 +31,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([])
     BrowserModule,
     AuthModule,
     CountdownModule,
+    DashboardModule,
     AdminModule,
     rootRouting,
     SharedModule

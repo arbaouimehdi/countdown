@@ -69,11 +69,6 @@ router.put('/:countdown', function(req, res, next) {
         });
       }
     })
-    // req_countdown.save().then(function(countdown){
-    //   return res.json({
-    //     countdown: req_countdown
-    //   });
-    // })
 
   });
 })

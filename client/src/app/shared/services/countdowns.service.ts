@@ -3,7 +3,8 @@ import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { ApiService } from './api.service';
-import { Countdown } from '../models';
+import { Countdown } from '../models/countdown.model';
+import { Subscriber } from '../models/subscriber.model';
 import { map } from 'rxjs/operators/map';
 
 @Injectable()
@@ -23,6 +24,10 @@ export class CountdownsService {
     if (countdown) {
       return this.apiService.put(`/${id}`, countdown);
     }
+  }
+
+  add(subscriber): Observable<Subscriber>  {
+    return this.apiService.post('/subscriber', subscriber);
   }
 
 

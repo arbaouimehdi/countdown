@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 import { UserService } from '../shared';
+import { CountdownsService } from '../shared/services/countdowns.service';
 import { Countdown } from '../shared/models/countdown.model';
+import { Subscriber } from '../shared/models/subscriber.model';
 
 @Component({
   selector: 'app-countdown-page',
@@ -12,12 +15,22 @@ import { Countdown } from '../shared/models/countdown.model';
 export class CountdownComponent implements OnInit {
 
   countdown: Countdown = {} as Countdown;
+  subscriber: Subscriber = {} as Subscriber;
+  subscriberForm: FormGroup;
+  errors: Object = {};
+  isSubmitting = false;
 
   constructor(
-    private router: Router,
+    private countdownsService: CountdownsService,
     private route: ActivatedRoute,
+    private router: Router,
+    private fb: FormBuilder,
     private userService: UserService
-  ) {}
+  ) {
+    this.subscriberForm = this.fb.group({
+      email: ''
+    });
+  }
 
   isAuthenticated: boolean;
 
@@ -60,6 +73,21 @@ export class CountdownComponent implements OnInit {
 
   setCountDown(date) {
     $('#countdown-timer').text(date).countDown();
+  }
+
+  submitForm() {
+    console.log(this.subscriberForm.value);
+    console.log(this.subscriber);
+
+    // post the changes
+    this.countdownsService
+    .add(this.subscriberForm.value)
+    .subscribe(
+      err => {
+        this.errors = err;
+        this.isSubmitting = false;
+      }
+    );
   }
 
 }

@@ -34,11 +34,11 @@
 
     <!-- Email Notification -->
     <div class="email-notification">
-      <form class="form-inline">
+      <form class="form-inline" [formGroup]="subscriberForm">
         <div class="form-group">
-          <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+          <input formControlName="email" type="email" class="form-control" placeholder="jane.doe@example.com">
         </div>
-        <button type="submit" class="btn btn-info">Send invitation</button>
+        <button type="button" class="btn btn-info" (click)="submitForm()">Send invitation</button>
       </form>
     </div>
 

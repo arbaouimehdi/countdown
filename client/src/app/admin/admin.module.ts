@@ -4,10 +4,13 @@ import { RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { AdminSubscribersComponent } from './subscribers/subscribers.component';
 import { AdminDashboardComponent } from './dashboard/dashboard.component';
+import { CountdownComponent } from './countdown/countdown.component';
+
 import { AdminAuthResolver } from './admin-auth-resolver.service';
 import { AdminDashboardResolver } from './dashboard/admin-dashboard-resolver.service'
+import { AdminSubscriberResolver } from './subscribers/subscribers-resolver.service';
+
 import { SharedModule, FooterComponent, HeaderComponent, SidebarComponent } from '../shared';
-import { CountdownComponent } from './countdown/countdown.component';
 
 const adminRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -19,7 +22,10 @@ const adminRouting: ModuleWithProviders = RouterModule.forChild([
     children: [
       {
         path: 'subscribers',
-        component: AdminSubscribersComponent
+        component: AdminSubscribersComponent,
+        resolve: {
+          subscriber: AdminSubscriberResolver
+        }
       },
       {
         path: 'dashboard',
@@ -49,7 +55,8 @@ const adminRouting: ModuleWithProviders = RouterModule.forChild([
   ],
   providers: [
     AdminAuthResolver,
-    AdminDashboardResolver
+    AdminDashboardResolver,
+    AdminSubscriberResolver,
   ]
 })
 export class AdminModule {}

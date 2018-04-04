@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CountdownModule } from './countdown/countdown.module';
 import { DashboardModule } from './admin/dashboard/dashboard.module'
+import { SubscribersModule } from './admin/subscribers/subscribers.module'
+
 import { AdminModule } from './admin/admin.module';
 
 import {
@@ -32,6 +34,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([])
     AuthModule,
     CountdownModule,
     DashboardModule,
+    SubscribersModule,
     AdminModule,
     rootRouting,
     SharedModule

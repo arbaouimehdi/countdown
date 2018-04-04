@@ -37,10 +37,14 @@ export class AdminComponent implements OnInit {
       this.router.navigateByUrl('/login');
       return;
     }
-    if (type === 'admin/dashboard' && this.isAuthenticated) {
-      this.router.navigateByUrl('/admin/dashboard');
-      return;
-    }
+    // if (type === 'admin/dashboard' && this.isAuthenticated) {
+    //   this.router.navigateByUrl('/admin/dashboard');
+    //   return;
+    // }
+    // if (type === 'admin/subscribers' && this.isAuthenticated) {
+    //   this.router.navigateByUrl('/admin/subscribers');
+    //   return;
+    // }
 
   }
 }

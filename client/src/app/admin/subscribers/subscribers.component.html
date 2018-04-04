@@ -1,1 +1,30 @@
 <h2>Subscribers list</h2>
+
+<table id="subscribers-table" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Email Address</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let subscriber of subscribers">
+      <td>{{ subscriber.email }}</td>
+      <td>{{ subscriber.createdAt.substr(0, 10) }}</td>
+      <td>{{ subscriber.createdAt.substr(11, 8) }}</td>
+      <td>
+        <button href="#" class="btn btn-xs btn-danger" (click)="deleteSubscriber(subscriber._id)">delete</button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Email Address</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Action</th>
+    </tr>
+  </tfoot>
+</table>

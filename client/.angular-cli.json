@@ -22,6 +22,7 @@
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "../node_modules/font-awesome/css/font-awesome.min.css",
         "../node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css",
+        "../node_modules/datatables.net-dt/css/jquery.dataTables.css",
         "styles.scss"
       ],
       "scripts": [
@@ -29,7 +30,8 @@
         "../node_modules/jquery.countdown/jquery.countdown.js",
         "../node_modules/moment/moment.js",
         "../node_modules/bootstrap/dist/js/bootstrap.min.js",
-        "../node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"
+        "../node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
+        "../node_modules/datatables.net/js/jquery.dataTables.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

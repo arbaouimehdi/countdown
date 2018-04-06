@@ -1,5 +1,9 @@
-<ul class="error-messages" *ngIf="errorList">
+<ul class="alert-messages alert alert-danger" *ngIf="errorList.length > 0">
   <li *ngFor="let error of errorList">
     {{ error }}
   </li>
+</ul>
+
+<ul>
+
 </ul>

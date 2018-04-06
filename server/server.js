@@ -53,13 +53,19 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 /// error handlers
 
 // development error handler
 // will print stacktrace
 if (!isProduction) {
   app.use(function(err, req, res, next) {
-    console.log(err.stack);
+    //console.log(err.stack);
 
     res.status(err.status || 500);
 
@@ -82,5 +88,5 @@ app.use(function(err, req, res, next) {
 
 // finally, let's start our server...
 var server = app.listen( process.env.PORT || 3000, function(){
-  console.log('Listening on port ' + server.address().port);
+  //console.log('Listening on port ' + server.address().port);
 });

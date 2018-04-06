@@ -30,6 +30,9 @@ export class CountdownsService {
     return this.apiService.post('/subscriber', subscriber);
   }
 
+  // upload(logo){
+  //   return this.apiService.post('/upload', logo);
+  // }
 
 
 }

@@ -6,6 +6,7 @@ import { AdminDashboardResolver } from '../dashboard/admin-dashboard-resolver.se
 import { UserService } from '../../shared/services/user.service';
 import { CountdownsService } from '../../shared/services/countdowns.service';
 import { Countdown } from '../../shared/models/countdown.model';
+import { Errors } from '../../shared/models';
 
 @Component({
   selector: 'admin-dashboard',
@@ -21,6 +22,7 @@ export class AdminDashboardComponent implements OnInit {
   countdownForm: FormGroup;
   errors: Object = {};
   isSubmitting = false;
+  filesToUpload: Array<File> = [];
 
   constructor(
     private countdownsService: CountdownsService,
@@ -55,6 +57,7 @@ export class AdminDashboardComponent implements OnInit {
     $('#datetimepicker1').datetimepicker();
   }
 
+  // Submit the Form
   submitForm() {
     this.isSubmitting = true;
     this.errors = {errors: {}};
@@ -77,10 +80,30 @@ export class AdminDashboardComponent implements OnInit {
       }
     );
 
+    // Upload logo
+    // this.uploadLogo();
+
   }
 
   updateCountdown(values: Object) {
     Object.assign(this.countdown, values);
   }
+
+  // uploadLogo() {
+  //   const formData: any = new FormData();
+  //   const files: Array<File> = this.filesToUpload;
+
+  //   formData.append("logo", files[0], files[0]['name']);
+
+  //   // post the changes
+  //   let logo = formData.get('logo');
+
+  //   this.countdownsService.upload(formData).subscribe();
+  // }
+
+  // fileChangeEvent(fileInput: any) {
+  //   this.filesToUpload = <Array<File>>fileInput.target.files;
+  //   this.countdown.logo = fileInput.target.files[0]['name'];
+  // }
 
 }

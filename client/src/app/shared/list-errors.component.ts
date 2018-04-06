@@ -7,12 +7,12 @@ import { Errors } from './models';
   templateUrl: './list-errors.component.html'
 })
 export class ListErrorsComponent {
-  formattedErrors: Array<string> = [];
+  formattedErrors = {};
 
   @Input()
-  set errors(errorList: Errors) {
+  set errors(errorList) {
     this.formattedErrors = Object.keys(errorList.errors || {})
-      .map(key => `${key} ${errorList.errors[key]}`);
+      .map(key => `${key} ${errorList.errors[key].message}`);
   }
 
   get errorList() { return this.formattedErrors; }

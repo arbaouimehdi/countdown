@@ -32,6 +32,16 @@
     <!-- Countdown Timer -->
     <div id="countdown-timer"></div>
 
+    <!-- Errors -->
+    <div class="alert alert-danger" *ngIf="errors.email && success == false">
+      {{ errors.email.message}}
+    </div>
+
+    <!-- Success Message -->
+    <div class="alert alert-success thanks" *ngIf="success == true">
+        Thanks for subscribing
+    </div>
+
     <!-- Email Notification -->
     <div class="email-notification">
       <form class="form-inline" [formGroup]="subscriberForm">

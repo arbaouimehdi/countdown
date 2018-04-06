@@ -19,6 +19,7 @@ export class CountdownComponent implements OnInit {
   subscriberForm: FormGroup;
   errors: Object = {};
   isSubmitting = false;
+  success: Boolean = false;
 
   constructor(
     private countdownsService: CountdownsService,
@@ -76,15 +77,23 @@ export class CountdownComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.subscriberForm.value);
-    console.log(this.subscriber);
 
     // post the changes
     this.countdownsService
     .add(this.subscriberForm.value)
     .subscribe(
+      complete => {
+
+        this.success = true;
+        $('.thanks').show();
+        setTimeout(() => {
+          console.log($('.thanks'));
+          $('.thanks').hide();
+        }, 3000)
+
+      },
       err => {
-        this.errors = err;
+        this.errors = err.errors;
         this.isSubmitting = false;
       }
     );

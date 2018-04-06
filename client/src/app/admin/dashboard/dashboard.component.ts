@@ -21,6 +21,7 @@ export class AdminDashboardComponent implements OnInit {
   countdown: Countdown = {} as Countdown;
   countdownForm: FormGroup;
   errors: Object = {};
+  success: Boolean = false;
   isSubmitting = false;
   filesToUpload: Array<File> = [];
 
@@ -73,8 +74,12 @@ export class AdminDashboardComponent implements OnInit {
     this.countdownsService
     .save(this.countdown)
     .subscribe(
-      countdown => this.router.navigateByUrl('admin/dashboard'),
+      success => {
+        this.success = true;
+        this.router.navigateByUrl('admin/dashboard')
+      },
       err => {
+        this.success = false;
         this.errors = err;
         this.isSubmitting = false;
       }

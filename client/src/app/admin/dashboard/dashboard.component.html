@@ -1,5 +1,9 @@
 
+<!-- Errors -->
 <app-list-errors [errors]="errors"></app-list-errors>
+
+<!-- Success Message -->
+<div class="alert alert-success" *ngIf="success == true"> update success </div>
 
 <form [formGroup]="countdownForm" enctype="multipart/form-data">
 

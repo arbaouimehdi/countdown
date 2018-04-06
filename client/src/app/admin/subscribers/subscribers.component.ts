@@ -43,15 +43,24 @@ export class AdminSubscribersComponent implements OnInit {
     this.route.data.subscribe(
       (data) => {
         this.subscribers = data.subscriber.subscribers;
-        console.log(data.subscriber);
       }
     );
   }
 
   deleteSubscriber(id) {
+
+    // Remove Selected Subscriber from the View
+    let updatedSubscribers = $.grep(this.subscribers, function(obj){
+      if (obj._id !== id) {
+        return obj;
+      }
+    });
+
+    // Delete the Subscriber from the Database
     this.subscribersService.destroy(id)
       .subscribe(
         success => {
+          this.subscribers = updatedSubscribers;
           this.router.navigateByUrl('/admin/subscribers');
         }
       );

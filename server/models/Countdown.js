@@ -5,7 +5,7 @@ let CountdownSchema = new mongoose.Schema({
   launch_time: { type: String, required: true },
   title: { type: String, required: [true, "can't be blank"], minlength: 10 },
   description: { type: String, required: [true, "can't be blank"] },
-  logo: { type: String },
+  logo: { type: String, required: [true, "can't be blank"] },
   facebook_url: { type: String },
   twitter_url: { type: String },
   behance_url: { type: String },

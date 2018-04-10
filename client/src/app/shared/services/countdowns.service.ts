@@ -22,7 +22,7 @@ export class CountdownsService {
     let id = countdown.countdowns[0]._id;
 
     if (countdown) {
-      return this.apiService.put(`/${id}`, countdown);
+      return this.apiService.put(`/countdown/${id}`, countdown);
     }
   }
 
@@ -30,9 +30,9 @@ export class CountdownsService {
     return this.apiService.post('/subscriber', subscriber);
   }
 
-  // upload(logo){
-  //   return this.apiService.post('/upload', logo);
-  // }
+  upload(body) : Observable<Countdown>{
+    return this.apiService.post('/upload', body);
+  }
 
 
 }

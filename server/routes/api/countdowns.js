@@ -27,8 +27,23 @@ router.get('/countdown', function(req, res, next) {
   });
 });
 
+// Upload Logo
+var storage = multer.diskStorage({
+  // destino del fichero
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  // renombrar fichero
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+
+var upload = multer({ storage: storage });
+
+
 // Update the Countdown
-router.put('/:countdown', function(req, res, next) {
+router.put('/countdown/:countdown', upload.array("uploads[]", 12), function(req, res, next) {
   Countdown.find(1).then(function(countdown) {
 
     let req_countdown = req.countdown[0];
@@ -75,20 +90,11 @@ router.put('/:countdown', function(req, res, next) {
   });
 })
 
-// Upload Logo
-// var storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, '/Users/freemh/Projects/done/Code/countdown/server/uploads')
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, '/Users/freemh/Desktop/button.png')
-//   }
-// })
-
-// var upload = multer({ storage: storage })
-
-// router.post("/upload", upload.array("uploads[]", 12), function (req, res) {
-//   //res.send(req.files);
-// });
+router.post('/upload', upload.array("uploads[]", 12), function (req, res, next) {
+  if(err) {
+    return res.status(404).send("a error ocurred");
+  }
+  res.status(200).send("file uploaded");
+});
 
 module.exports = router;

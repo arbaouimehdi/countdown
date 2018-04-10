@@ -8,6 +8,7 @@ import { CountdownsService } from '../../shared/services/countdowns.service';
 import { Countdown } from '../../shared/models/countdown.model';
 import { Errors } from '../../shared/models';
 
+
 @Component({
   selector: 'admin-dashboard',
   templateUrl: './dashboard.component.html',
@@ -70,6 +71,21 @@ export class AdminDashboardComponent implements OnInit {
     // Update the model
     this.updateCountdown(this.countdownForm.value);
 
+    // Update logo
+    const formData: any = new FormData();
+    const files: Array<File> = this.filesToUpload;
+    if (files.length > 0 ){
+      formData.append("uploads[]", files[0], files[0]['name']);
+      this.countdownsService.upload(formData).subscribe(
+        success => {
+          console.log(success);
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
+
     // post the changes
     this.countdownsService
     .save(this.countdown)
@@ -85,30 +101,17 @@ export class AdminDashboardComponent implements OnInit {
       }
     );
 
-    // Upload logo
-    // this.uploadLogo();
-
   }
 
+  //
   updateCountdown(values: Object) {
     Object.assign(this.countdown, values);
   }
 
-  // uploadLogo() {
-  //   const formData: any = new FormData();
-  //   const files: Array<File> = this.filesToUpload;
-
-  //   formData.append("logo", files[0], files[0]['name']);
-
-  //   // post the changes
-  //   let logo = formData.get('logo');
-
-  //   this.countdownsService.upload(formData).subscribe();
-  // }
-
-  // fileChangeEvent(fileInput: any) {
-  //   this.filesToUpload = <Array<File>>fileInput.target.files;
-  //   this.countdown.logo = fileInput.target.files[0]['name'];
-  // }
+  //
+  fileChangeEvent(fileInput: any) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
+    this.countdown.logo = fileInput.target.files[0]['name'];
+  }
 
 }

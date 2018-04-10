@@ -48,7 +48,7 @@
               <label class="control-label">Logo</label>
               <!-- # Upload Logo -->
               <!-- <input type="file" (change)="fileChangeEvent($event)" class="form-control" placeholder="Upload file..." /> -->
-              <input type="file" (change)="fileChangeEvent($event)" class="form-control" placeholder="Upload file..." />
+              <input type="file" (change)="fileChangeEvent($event)" name="uploads[]" class="form-control" placeholder="Upload file..." />
               <span class="help-block" id="recomendsize">Recommended image size is 100px X 100px</span>
               <small class="text-danger imgreq_error" style="display: none;">Please choose the image</small>
               <small class="text-danger imgext_error" style="display: none;">Please upload jpg|jpeg|png|gif images only</small>

@@ -36,7 +36,7 @@ if(isProduction){
   mongoose.connect(process.env.MONGODB_URI);
 } else {
   mongoose.connect('mongodb://localhost/countdown');
-  mongoose.set('debug', true);
+  //mongoose.set('debug', true);
 }
 
 require('./models/User');
@@ -51,12 +51,6 @@ app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
-});
-
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
 });
 
 /// error handlers

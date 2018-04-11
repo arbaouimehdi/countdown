@@ -30,9 +30,5 @@ export class CountdownsService {
     return this.apiService.post('/subscriber', subscriber);
   }
 
-  upload(body) : Observable<Countdown>{
-    return this.apiService.post2('/upload', body);
-  }
-
 
 }

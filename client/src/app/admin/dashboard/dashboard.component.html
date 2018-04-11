@@ -1,15 +1,5 @@
-
 <!-- Errors -->
 <app-list-errors [errors]="errors"></app-list-errors>
-
-<div>
-  <input type="file" name="entity" ng2FileSelect [uploader]="uploader" />
-
-<button type="button" class="btn btn-success btn-s"
-                        (click)="uploader.uploadAll()">
-                 Upload with ng-2 file uploader
-                </button>
-</div>
 
 <!-- Success Message -->
 <div class="alert alert-success" *ngIf="success == true"> update success </div>
@@ -56,13 +46,14 @@
             <div class="form-group">
               <label class="control-label">Logo</label>
               <!-- # Upload Logo -->
-              <input type="file" (change)="fileChangeEvent($event.target.files)" name="entity" class="form-control" placeholder="Upload file..." />
+              <input type="file" name="entity" ng2FileSelect [uploader]="uploader" class="form-control" placeholder="Upload file..." /><br/>
+              <button type="button" class="btn btn-success btn-xs" (click)="uploader.uploadAll()">Upload new logo</button>
               <span class="help-block" id="recomendsize">Recommended image size is 100px X 100px</span>
               <small class="text-danger imgreq_error" style="display: none;">Please choose the image</small>
               <small class="text-danger imgext_error" style="display: none;">Please upload jpg|jpeg|png|gif images only</small>
               <small class="text-danger imgsize_error" style="display: none;">Please upload 100px X 100px size images</small>
-              <!-- <img id="logo_img" src="{{ countdown.countdowns[0].logo }}" class=" image_hide img-responsive"
-                width="auto" height="42" alt="logo"> -->
+              <img id="logo_img" src="./assets/public/uploads/{{ countdown.countdowns[0].logo }}" class=" image_hide img-responsive"
+                width="auto" height="42" alt="logo">
             </div>
           </div>
         </div>

@@ -3,6 +3,15 @@ var multer = require('multer');
 var mongoose = require('mongoose');
 var Countdown = mongoose.model('Countdown');
 var auth = require('../auth');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../client/src/assets/public/uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+var upload = multer({ storage: storage }).single('entity');
 
 // Preload article objects on routes with ':article'
 router.param('countdown', function(req, res, next, slug) {
@@ -74,25 +83,15 @@ router.put('/countdown/:countdown',auth.required, function(req, res, next) {
     })
 
   });
-  next();
 })
 
 // Upload Logo
-var storage = multer.diskStorage({
-  // destino del fichero
-  destination: function (req, file, cb) {
-    cb(null, './uploads')
-  },
-  // renombrar fichero
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  }
-});
 
-var upload = multer({ storage: storage }).single('entity');
 
+//
+//
+// Upload
 router.post('/upload', function (req, res, next) {
-  console.log(req.body);
   upload(req, res, function(err) {
     if(err) {
       // An error occurred when uploading
@@ -100,8 +99,20 @@ router.post('/upload', function (req, res, next) {
       return res.status(422).send("an Error occured")
     }
     else {
-	    path = req.file.path;
-	    return res.send("Upload Completed for "+path); 
+      // Update database
+      Countdown.find(1).then(function(countdown){
+        countdown[0].logo = req.file.filename
+        countdown[0].save(function(err, countdown) {
+          console.log(err);
+          if (err) {
+            return res.status(404).send(err); 
+          }
+          else {
+            return res.send({countdown});
+          }
+        })
+      })
+
     }
   })
 });

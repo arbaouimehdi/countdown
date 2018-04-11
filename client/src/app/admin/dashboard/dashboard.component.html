@@ -2,6 +2,15 @@
 <!-- Errors -->
 <app-list-errors [errors]="errors"></app-list-errors>
 
+<div>
+  <input type="file" name="entity" ng2FileSelect [uploader]="uploader" />
+
+<button type="button" class="btn btn-success btn-s"
+                        (click)="uploader.uploadAll()">
+                 Upload with ng-2 file uploader
+                </button>
+</div>
+
 <!-- Success Message -->
 <div class="alert alert-success" *ngIf="success == true"> update success </div>
 
@@ -21,8 +30,8 @@
                 <!-- Launch Time -->
                 <input formControlName="launch_time"
                        type="text"
-                      name="datetime"
-                      class="form-control" id="datetimepicker1" value="{{ countdown.countdowns[0].launch_time }}">
+                        name="datetime"
+                        class="form-control" id="datetimepicker1" value="{{ countdown.countdowns[0].launch_time }}">
 
                 <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
@@ -47,8 +56,7 @@
             <div class="form-group">
               <label class="control-label">Logo</label>
               <!-- # Upload Logo -->
-              <!-- <input type="file" (change)="fileChangeEvent($event)" class="form-control" placeholder="Upload file..." /> -->
-              <input type="file" (change)="fileChangeEvent($event)" name="uploads[]" class="form-control" placeholder="Upload file..." />
+              <input type="file" (change)="fileChangeEvent($event.target.files)" name="entity" class="form-control" placeholder="Upload file..." />
               <span class="help-block" id="recomendsize">Recommended image size is 100px X 100px</span>
               <small class="text-danger imgreq_error" style="display: none;">Please choose the image</small>
               <small class="text-danger imgext_error" style="display: none;">Please upload jpg|jpeg|png|gif images only</small>

@@ -1,6 +1,8 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+import { FileUploadModule } from "ng2-file-upload";
+
 import { AdminComponent } from './admin.component';
 import { AdminSubscribersComponent } from './subscribers/subscribers.component';
 import { AdminDashboardComponent } from './dashboard/dashboard.component';
@@ -42,7 +44,8 @@ const adminRouting: ModuleWithProviders = RouterModule.forChild([
 @NgModule({
   imports: [
     adminRouting,
-    SharedModule
+    SharedModule,
+    FileUploadModule
   ],
   declarations: [
     AdminComponent,

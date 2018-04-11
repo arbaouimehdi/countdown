@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { ApiService } from './api.service';
 import { Countdown } from '../models/countdown.model';
 import { Subscriber } from '../models/subscriber.model';
-import { map } from 'rxjs/operators/map';
+
 
 @Injectable()
 export class CountdownsService {
@@ -31,7 +31,7 @@ export class CountdownsService {
   }
 
   upload(body) : Observable<Countdown>{
-    return this.apiService.post('/upload', body);
+    return this.apiService.post2('/upload', body);
   }
 
 

@@ -17,9 +17,10 @@ const dashboardRouting: ModuleWithProviders = RouterModule.forChild([
 
 @NgModule({
   imports: [
-    dashboardRouting
+    dashboardRouting,
   ],
-  declarations: [],
+  declarations: [
+  ],
   providers: [CountdownsService]
 })
 export class DashboardModule { }

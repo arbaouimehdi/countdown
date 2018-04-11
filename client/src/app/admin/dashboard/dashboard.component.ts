@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import 'rxjs/add/operator/map'
+
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
+import { FileUploader } from 'ng2-file-upload';
+import { Http, Response } from '@angular/http';
 
 import { AdminDashboardResolver } from '../dashboard/admin-dashboard-resolver.service'
 import { UserService } from '../../shared/services/user.service';
@@ -8,6 +13,7 @@ import { CountdownsService } from '../../shared/services/countdowns.service';
 import { Countdown } from '../../shared/models/countdown.model';
 import { Errors } from '../../shared/models';
 
+const URL = 'http://localhost:3000/api/upload';
 
 @Component({
   selector: 'admin-dashboard',
@@ -19,23 +25,34 @@ import { Errors } from '../../shared/models';
 })
 export class AdminDashboardComponent implements OnInit {
 
+  uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'entity'});
+
   countdown: Countdown = {} as Countdown;
   countdownForm: FormGroup;
   errors: Object = {};
   success: Boolean = false;
   isSubmitting = false;
-  filesToUpload: Array<File> = [];
+  fileToUpload: File = null;
 
   constructor(
     private countdownsService: CountdownsService,
     private route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private el: ElementRef
   ) {}
 
   isAuthenticated: boolean;
 
   ngOnInit() {
+
+    this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
+    this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+             console.log("ImageUpload:uploaded:", item, status, response);
+             alert(response);
+         };
+
     // Retreive the prefetched article
     this.route.data.subscribe(
       (data) => {
@@ -61,43 +78,43 @@ export class AdminDashboardComponent implements OnInit {
 
   // Submit the Form
   submitForm() {
-    this.isSubmitting = true;
-    this.errors = {errors: {}};
+    // this.isSubmitting = true;
+    // this.errors = {errors: {}};
 
-    if ($('#datetimepicker1').val()){
-      this.countdownForm.value.launch_time = $('#datetimepicker1').val();
-    }
+    // if ($('#datetimepicker1').val()){
+    //   this.countdownForm.value.launch_time = $('#datetimepicker1').val();
+    // }
 
     // Update the model
-    this.updateCountdown(this.countdownForm.value);
-
-    // Update logo
-    const formData: any = new FormData();
-    const files: Array<File> = this.filesToUpload;
-    if (files.length > 0 ){
-      formData.append("uploads[]", files[0], files[0]['name']);
-      this.countdownsService.upload(formData).subscribe(
-        success => {
-          console.log(success);
-        },
-        err => {
-          console.log(err);
-        }
-      );
-    }
+    //this.updateCountdown(this.countdownForm.value);
 
     // post the changes
-    this.countdownsService
-    .save(this.countdown)
+    // this.countdownsService
+    // .save(this.countdown)
+    // .subscribe(
+    //   success => {
+    //     this.success = true;
+    //     this.router.navigateByUrl('admin/dashboard')
+    //   },
+    //   err => {
+    //     this.success = false;
+    //     this.errors = err;
+    //     this.isSubmitting = false;
+    //   }
+    // );
+
+    // Update logo
+    let formData : FormData = new FormData();
+    formData.append('entity', this.fileToUpload, this.fileToUpload.name);
+    // formData.append('entity', this.fileToUpload, this.fileToUpload.name);
+    // headers = headers.set('Content-Type', 'multipart/form-data');
+    this.countdownsService.upload(formData)
     .subscribe(
-      success => {
-        this.success = true;
-        this.router.navigateByUrl('admin/dashboard')
+      res => {
+        console.log(res);
       },
       err => {
-        this.success = false;
-        this.errors = err;
-        this.isSubmitting = false;
+        console.log("Error occured");
       }
     );
 
@@ -109,9 +126,36 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   //
-  fileChangeEvent(fileInput: any) {
-    this.filesToUpload = <Array<File>>fileInput.target.files;
-    this.countdown.logo = fileInput.target.files[0]['name'];
+  fileChangeEvent(files : FileList) {
+    this.fileToUpload = files.item(0);
+    this.countdown.logo = this.fileToUpload.name;
   }
+
+  setFileHeader() {
+    return new HttpHeaders({
+       'Accept': 'application/json',
+    });
+  }
+
+  upload() {
+    let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#photo');
+    console.log("iam+ "+inputEl);
+    let fileCount: number = inputEl.files.length;
+    let formData = new FormData();
+    if (fileCount > 0) { // a file was selected
+        for (let i = 0; i < fileCount; i++) {
+            formData.append('photo', inputEl.files.item(i));
+        }
+        this.http
+            .post(URL, formData).map((res:any) => res).subscribe(
+                (success) => {
+                 alert(success._body);
+              },
+                (error) => alert(error)
+            );
+
+    }
+   }
+
 
 }

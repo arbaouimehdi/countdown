@@ -21,29 +21,15 @@ router.get('/countdown', function(req, res, next) {
     Countdown.find(1)
       .exec(),
   ]).then(function(results){
-    return res.json({
+    return res.send({
       countdowns: results[0]
     });
   });
 });
 
-// Upload Logo
-var storage = multer.diskStorage({
-  // destino del fichero
-  destination: function (req, file, cb) {
-    cb(null, './uploads')
-  },
-  // renombrar fichero
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  }
-});
-
-var upload = multer({ storage: storage });
-
 
 // Update the Countdown
-router.put('/countdown/:countdown', upload.array("uploads[]", 12), function(req, res, next) {
+router.put('/countdown/:countdown',auth.required, function(req, res, next) {
   Countdown.find(1).then(function(countdown) {
 
     let req_countdown = req.countdown[0];
@@ -79,22 +65,45 @@ router.put('/countdown/:countdown', upload.array("uploads[]", 12), function(req,
     req_countdown.save(function(err, countdown) {
       console.log(err);
       if (err) {
-        return res.status(404).json(err); 
+        return res.status(404).send(err); 
       }else {
-        return res.json({
+        return res.send({
           countdown: req_countdown
         });
       }
     })
 
   });
+  next();
 })
 
-router.post('/upload', upload.array("uploads[]", 12), function (req, res, next) {
-  if(err) {
-    return res.status(404).send("a error ocurred");
+// Upload Logo
+var storage = multer.diskStorage({
+  // destino del fichero
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  // renombrar fichero
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
   }
-  res.status(200).send("file uploaded");
+});
+
+var upload = multer({ storage: storage }).single('entity');
+
+router.post('/upload', function (req, res, next) {
+  console.log(req.body);
+  upload(req, res, function(err) {
+    if(err) {
+      // An error occurred when uploading
+      console.log(err);
+      return res.status(422).send("an Error occured")
+    }
+    else {
+	    path = req.file.path;
+	    return res.send("Upload Completed for "+path); 
+    }
+  })
 });
 
 module.exports = router;
